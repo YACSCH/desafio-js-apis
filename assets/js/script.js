@@ -69,8 +69,8 @@ async function renderizarGrafica(value) {
            }
           },
           ticks: {
-            maxRotation: 45, // Ángulo de rotación de 90 grados
-            minRotation: 45, // Ángulo de rotación de 90 grados
+            maxRotation: 45, 
+            minRotation: 45, 
           },
         },
         y: {
