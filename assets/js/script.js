@@ -14,10 +14,13 @@ btnSearch.addEventListener("click", async (e) => {
     const response = await fetch(apiUrl);
     const dataCbo = await response.json();
 
-    lblResult.innerHTML = `Resultado $ ${
-      Number(amount.value) * Number(dataCbo[cboCash.value].valor)
-    }`;
+
     
+    const amountResult =
+      Number(amount.value) * Number(dataCbo[cboCash.value].valor);
+
+    lblResult.innerHTML = `Resultado $ ${amountResult.toLocaleString("es-ES")}`;
+
     renderizarGrafica(cboCash.value);
   } catch (error) {
     console.log(error);
@@ -29,60 +32,63 @@ async function renderizarGrafica(value) {
   const response = await fetch(apiUrl + value);
   const dataGraph = await response.json();
 
-  const labels = dataGraph.serie.map((item) => item.fecha);
+  const labels = dataGraph.serie.map((item) => item.fecha.substring(0, 10));
   const values = dataGraph.serie.map((item) => item.valor);
 
-
+  console.log(labels);
   const datasets = [
     {
       label: `Estadísticas Indicador ${value} `,
       borderColor: "rgb(255, 99, 132)",
-      data : values.slice(0,10),
+      data: values.slice(0, 10),
     },
   ];
 
-
-const config = {
-  type: "line",
-  data: {
-    labels: labels.slice(0, 10),
-    datasets: [
-      {
-        label: `Estadísticas Indicador ${value}`,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        data: values.slice(0, 10),
-      },
-    ],
-  },
-  options: {
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Fechas",
+  const config = {
+    type: "line",
+    data: {
+      labels: labels.slice(0, 10),
+      datasets: [
+        {
+          label: `Estadísticas Indicador ${value}`,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          data: values.slice(0, 10),
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Fechas",
+          },
+          ticks: {
+            maxRotation: 45, // Ángulo de rotación de 90 grados
+            minRotation: 45, // Ángulo de rotación de 90 grados
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Valores",
+          },
         },
       },
-      y: {
-        title: {
+      plugins: {
+        legend: {
           display: true,
-          text: "Valores",
-        }
+          position: "top",
+        },
+      },
+      tooltips: {
+        mode: "index",
+        intersect: false,
       },
     },
-    plugins: {
-      legend: {
-        display: true,
-        position: "top", 
-      },
-    },
-    tooltips: {
-      mode: "index",
-      intersect: false,
-    },
-  },
-};
- 
+  };
+
   let myChart = document.getElementById("myChart");
 
   myChart.style.backgroundColor = "white";
@@ -92,14 +98,4 @@ const config = {
   }
 
   myChart.chart = new Chart(myChart, config);
-   
-
-} 
-
-
-
-
-
-
-
-
+}
