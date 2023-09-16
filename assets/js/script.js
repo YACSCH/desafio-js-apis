@@ -15,7 +15,7 @@ btnSearch.addEventListener("click", async (e) => {
     const dataCbo = await response.json();
 
 
-    
+
     const amountResult =
       Number(amount.value) * Number(dataCbo[cboCash.value].valor);
 
@@ -63,6 +63,10 @@ async function renderizarGrafica(value) {
           title: {
             display: true,
             text: "Fechas",
+            font: {
+              weight: 'bold',
+             lineHeight: 1.2,
+           }
           },
           ticks: {
             maxRotation: 45, // Ángulo de rotación de 90 grados
@@ -73,6 +77,10 @@ async function renderizarGrafica(value) {
           title: {
             display: true,
             text: "Valores",
+            font: {
+               weight: 'bold',
+              lineHeight: 1.2,
+            }
           },
         },
       },
@@ -80,6 +88,12 @@ async function renderizarGrafica(value) {
         legend: {
           display: true,
           position: "top",
+          labels: {
+            font: {
+                size: 20,
+                weight: 'bold',
+            }
+        }
         },
       },
       tooltips: {
