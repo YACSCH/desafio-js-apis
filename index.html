@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Conversor de Monedas Nacional</h1>
+      <hr />
+      <section class="form-section">
+        
+        <form class="form">
+          <input id="txtamount" class="txtamount" type="number" placeholder="Ingrese el monto en CLP" />
+          <select id="cbomonedas" class="cbomonedas" name="cbomonedas">
+            <option value="">Seleccione Moneda</option>
+            <option value="uf">UF</option>
+            <option value="dolar">Dolar</option>
+          </select>
+         <button id="btnsearch" class="btnsearch">Buscar</button>
+         <p class="text-result">
+            <span id="lblresult" class="lbl-result"></span>
+         </p> 
+         <span id="lblerror" class="lbl-error"></span>
+        </form>
+      </section>
+      <section class="graph-section">
+          <canvas id="myChart"></canvas> 
+      </section>
+    </main>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
