@@ -24,7 +24,7 @@ btnSearch.addEventListener("click", async (e) => {
     renderizarGrafica(cboCash.value);
   } catch (error) {
     console.log(error);
-    lblerror.innerHTML = `Algo salió mal! Error: ${e.message}`;
+    lblerror.innerHTML = `Algo salió mal! Error: ${error.message}`;
   }
 });
 
